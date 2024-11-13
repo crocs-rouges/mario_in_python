@@ -1,0 +1,4 @@
+pygame==2.4.0
+numpy==1.21.5
+Pillow==9.2.0
+python==3.12
