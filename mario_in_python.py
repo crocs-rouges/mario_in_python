@@ -42,6 +42,8 @@ intervalle=0
 k_g=-1
 score=0
 
+print("patate")
+
 # tous les chemins d'accès au images
 background_path : str = "images/Background/"
 bloc_path : str = "images/Bloc/"
