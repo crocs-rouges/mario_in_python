@@ -1,4 +1,5 @@
 # les importations obligatoire pour faire marcher le projet
+import os
 import pygame
 from pygame import mixer
 from typing import List
@@ -42,19 +43,20 @@ intervalle=0
 k_g=-1
 score=0
 
-# tous les chemins d'accès au images
-background_path : str = "images/Background/"
-bloc_path : str = "images/Bloc/"
-ennemi_path : str = "images/Ennemi/"
-mario_path : str =  "images/Mario/"
-map_path : str = "images/Map/"
+# tous les chemins d'accès aux images
+project_path = os.path.dirname(os.path.abspath(__file__))
+background_path: str = os.path.join(project_path, "images", "Background") + os.sep
+bloc_path: str = os.path.join(project_path, "images", "Bloc") + os.sep
+ennemi_path: str = os.path.join(project_path, "images", "Ennemi") + os.sep
+mario_path: str = os.path.join(project_path, "images", "Mario") + os.sep
+map_path: str = os.path.join(project_path, "images", "Map") + os.sep
 
 #ces images sont les images qui vont etre prise pour etre comparer avec l'image et générer le tableau
     #il est recommandé de prendre les images directement depuis l'image du niveau 
     # 16 pixel par 16 pixel est la taille d'une image qui va etre comparé avec le niveau
 sol_comp = np.asarray(Image.open(bloc_path+'sol.png'))
 blocus_comp = np.asarray(Image.open(bloc_path+'blocus.png'))
-drapeau_comp = np.asarray(Image.open(bloc_path+'drapeau.png'))
+drapeau_comp = np.asarray(Image.open(bloc_path+'Drapeau.png'))
 air_comp = np.asarray(Image.open(bloc_path+'air.png'))
 bloc_comp = np.asarray(Image.open(bloc_path+'bloc.png'))
 tete_tuyau_comp = np.asarray(Image.open(bloc_path+'tete_tuyau.png'))
@@ -132,13 +134,13 @@ if instance==True: #sert à créer un fichier texte qui contient le tableau gén
     matching = compare_and_mark_chunks(W1_1)
     matching_array = format_result(matching)
     np.set_printoptions(threshold=np.inf)
-    np.save('resultats.npy', matching_array)
-    resultats = np.load('resultats.npy', allow_pickle=True)
+    np.save(os.path.join(project_path, 'resultats.npy'), matching_array)
+    resultats = np.load(os.path.join(project_path, 'resultats.npy'), allow_pickle=True)
     resultats_str = np.array_str(resultats)
     # Afficher la chaîne de caractères ou l'écrire dans un fichier texte
     print(resultats_str)
     # Écrire la chaîne de caractères dans un fichier texte
-    with open('resultats.txt', 'w') as f:
+    with open(os.path.join(project_path, 'resultats.txt'), 'w') as f:
         f.write(resultats_str)
 
 
@@ -176,17 +178,17 @@ bloc = pygame.transform.scale(pygame.image.load(bloc_path+'bloc.png'), (50,50))
 blocus = pygame.transform.scale(pygame.image.load(bloc_path+'blocus.png'), (50,50))
 sol = pygame.transform.scale(pygame.image.load(bloc_path+'sol.png'), (50,50))
 air = pygame.transform.scale(pygame.image.load(bloc_path+'air.png'), (50,50))
-drapeau = pygame.transform.scale(pygame.image.load(bloc_path+'drapeau.png'), (50,200))
+drapeau = pygame.transform.scale(pygame.image.load(bloc_path+'Drapeau.png'), (50,200))
 Level_1 = pygame.transform.scale(pygame.image.load(bloc_path+'tuyau.png'), (50,50))
 Level_2 = pygame.transform.scale(pygame.image.load(bloc_path+'tuyau.png'), (50,50))
 piece = pygame.transform.scale(pygame.image.load(bloc_path+'piece.png'), (50,50))
 
-coeur = pygame.transform.scale(pygame.image.load('images/coeur.png'), (50,50))
+coeur = pygame.transform.scale(pygame.image.load(os.path.join(project_path, 'images', 'coeur.png')), (50,50))
 
 
 #configuration du son du jeu et des effets sonores
-pygame.mixer.music.load("images/jump.mp3")
-jump_sound = mixer.Sound("images/jump.mp3")
+pygame.mixer.music.load(os.path.join(project_path, "images", "jump.mp3"))
+jump_sound = mixer.Sound(os.path.join(project_path, "images", "jump.mp3"))
 pygame.mixer.music.set_volume(0.03)
 
 
