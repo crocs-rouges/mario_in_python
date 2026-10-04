@@ -23,6 +23,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="mario_in_python.py" />
+    <Compile Include="game\__init__.py" />
+    <Compile Include="game\main.py" />
+    <Compile Include="game\player.py" />
+    <Compile Include="game\enemies.py" />
+    <Compile Include="game\progression.py" />
+    <Compile Include="tests\__init__.py" />
+    <Compile Include="tests\test_player.py" />
+    <Compile Include="tests\test_enemies.py" />
+    <Compile Include="tests\test_progression.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
